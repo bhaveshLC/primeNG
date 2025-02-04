@@ -1,0 +1,57 @@
+<div class="grid place-content-center h-screen">
+  <form action="" class="w-full mx-auto box p-10">
+    <h2 class="text-center text-3xl font-medium text-white mb-4">Login</h2>
+    <i class="pi pi-apple"></i>
+    <div class="mb-4 w-full">
+      <p-floatlabel variant="on" class="block">
+        <input
+          pInputText
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          autocomplete="off"
+          styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 border rounded-md shadow-sm focus:outline-none focus:shadow-outline"
+        />
+        <label for="email" class="!text-sm !font-medium !text-gray-500"
+          >Email</label
+        >
+      </p-floatlabel>
+    </div>
+    <div>
+      <p-floatlabel variant="on" class="block">
+        <input
+          pInputText
+          id="password"
+          [(ngModel)]="password"
+          name="passowrd"
+          autocomplete="off"
+          styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 !border rounded-md !shadow-sm !focus:outline-none focus:shadow-outline"
+        />
+        <label for="password" class="!text-sm !font-medium !text-gray-500"
+          >Password</label
+        >
+      </p-floatlabel>
+    </div>
+    <div class="mt-8">
+      <p-button
+        label="Submit"
+        styleClass="w-full px-4 py-2 !text-white   rounded-md hover:bg-blue-600"
+        (click)="onLogin()"
+      />
+    </div>
+    <div class="flex items-center mt-2">
+      <p class="text-sm text-gray-500">Forgot Password?</p>
+      <p-button label="Click Here" [link]="true" />
+    </div>
+    <p-divider></p-divider>
+    <div class="flex items-center text-sm text-gray-500">
+      Don't have an account?
+      <p-button
+        label="Sign Up"
+        styleClass=" ml-2 !text-sm !py-1"
+        routerLink="/register"
+        [link]="true"
+      />
+    </div>
+  </form>
+</div>
