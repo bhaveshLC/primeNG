@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { CourseDetailsComponent } from './pages/course-details/course-details.component';
 
 export const routes: Routes = [
   {
@@ -13,7 +15,17 @@ export const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'course/:id',
+        component: CourseDetailsComponent,
+      },
+    ],
   },
 ];

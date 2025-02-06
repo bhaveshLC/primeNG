@@ -1,10 +1,12 @@
+<app-toggle-theme />
 <div class="grid place-content-center h-screen">
   <form
     action=""
     class="w-full mx-auto box p-10 grid grid-cols-1 gap-2"
     [formGroup]="registerForm"
   >
-    <h2 class="text-center text-3xl font-medium text-white mb-4">Register</h2>
+    <h2 class="text-center text-3xl font-medium mb-4">Register</h2>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
       <div class="mb-4">
         <p-floatlabel variant="on" class="block">
@@ -16,8 +18,8 @@
             styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 border rounded-md shadow-sm focus:outline-none focus:shadow-outline"
           />
           <label for="name" class="!text-sm !font-medium !text-gray-500"
-            >Name</label
-          >
+            >Name
+          </label>
         </p-floatlabel>
         <div
           *ngIf="
@@ -53,65 +55,76 @@
         </div>
       </div>
     </div>
-    <div class="mb-4">
-      <!-- <p-select
-        [options]="genders"
-        formControlName="gender"
-        optionLabel="name"
-        placeholder="Select a Gender"
-        styleClass="!w-full "
-      /> -->
-      <label for="gender" class="!font-medium">Gender</label>
-      <div class="card flex justify-start mt-2">
-        <div class="flex flex-wrap gap-4">
-          <div class="flex items-center">
-            <p-radiobutton
-              value="male"
-              formControlName="gender"
-              inputId="gender1"
-            />
-            <label for="gender1" class="ml-2">male</label>
-          </div>
-
-          <div class="flex items-center">
-            <p-radiobutton
-              value="female"
-              formControlName="gender"
-              inputId="gender2"
-            />
-            <label for="gender2" class="ml-2">Female</label>
-          </div>
-
-          <div class="flex items-center">
-            <p-radiobutton
-              value="other"
-              formControlName="gender"
-              inputId="gender3"
-            />
-            <label for="gender3" class="ml-2">Other</label>
-          </div>
-        </div>
-      </div>
-
-      <div
-        *ngIf="
-          registerForm.controls.gender.errors &&
-          registerForm.controls.gender.touched
-        "
-        class="text-red-500"
-      >
-        Gender is required.
-      </div>
-    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
       <div class="mb-4">
         <p-floatlabel variant="on" class="block">
           <input
             pInputText
+            id="username"
+            formControlName="username"
+            autocomplete="off"
+            styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 border rounded-md shadow-sm focus:outline-none focus:shadow-outline"
+          />
+          <label for="username" class="!text-sm !font-medium !text-gray-500"
+            >Username</label
+          >
+        </p-floatlabel>
+        <div
+          *ngIf="
+            registerForm.controls.username.errors &&
+            registerForm.controls.username.touched
+          "
+          class="text-red-500"
+        >
+          Username is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <!-- <p-select
+        [options]="role"
+        formControlName="role"
+        optionLabel="name"
+        placeholder="Select a Role"
+        styleClass="!w-full "
+      /> -->
+        <div class="card flex gap-4 mt-2">
+          <label for="gender" class="!font-medium">Role</label>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center">
+              <p-radiobutton
+                value="student"
+                formControlName="role"
+                inputId="student"
+              />
+              <label for="student" class="ml-2">Student</label>
+            </div>
+
+            <div class="flex items-center">
+              <p-radiobutton
+                value="instructor"
+                formControlName="role"
+                inputId="instructor"
+              />
+              <label for="instructor" class="ml-2">Instructor</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+      <div class="mb-4">
+        <p-floatlabel variant="on" class="block">
+          <!-- <input
+            pInputText
             id="password"
             formControlName="password"
             autocomplete="off"
             styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 !border rounded-md !shadow-sm !focus:outline-none focus:shadow-outline"
+          /> -->
+          <p-password
+            formControlName="password"
+            [toggleMask]="true"
+            styleClass="w-full"
           />
           <label for="password" class="!text-sm !font-medium !text-gray-500"
             >Password</label
@@ -130,12 +143,17 @@
 
       <div class="mb-4">
         <p-floatlabel variant="on" class="block">
-          <input
+          <!-- <input
             pInputText
             id="confirmPassword"
             formControlName="confirmPassword"
             autocomplete="off"
             styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 !border rounded-md !shadow-sm !focus:outline-none focus:shadow-outline"
+          /> -->
+          <p-password
+            formControlName="password"
+            [toggleMask]="true"
+            [feedback]="false"
           />
           <label
             for="confirmPassword"
@@ -159,6 +177,8 @@
       <p-button
         label="Submit"
         styleClass="w-full px-4 py-2 !text-white   rounded-md hover:bg-blue-600"
+        [loading]="loading"
+        type="submit"
         (click)="onRegister()"
       />
     </div>

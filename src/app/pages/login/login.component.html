@@ -1,14 +1,13 @@
-<div class="grid place-content-center h-screen">
-  <form action="" class="w-full mx-auto box p-10">
-    <h2 class="text-center text-3xl font-medium text-white mb-4">Login</h2>
-    <i class="pi pi-apple"></i>
+<app-toggle-theme />
+<div class="grid place-content-center h-180">
+  <form action="" class="w-full mx-auto box p-10" [formGroup]="loginForm">
+    <h2 class="text-center text-3xl font-medium mb-4">Login</h2>
     <div class="mb-4 w-full">
       <p-floatlabel variant="on" class="block">
         <input
           pInputText
           id="email"
-          name="email"
-          [(ngModel)]="email"
+          formControlName="email"
           autocomplete="off"
           styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 border rounded-md shadow-sm focus:outline-none focus:shadow-outline"
         />
@@ -16,14 +15,22 @@
           >Email</label
         >
       </p-floatlabel>
+      <div
+        *ngIf="
+          loginForm.controls.email.errors && loginForm.controls.email.touched
+        "
+        class="text-red-500"
+      >
+        Email is required.
+      </div>
     </div>
     <div>
       <p-floatlabel variant="on" class="block">
         <input
           pInputText
+          type="password"
           id="password"
-          [(ngModel)]="password"
-          name="passowrd"
+          formControlName="password"
           autocomplete="off"
           styleClass="w-full px-3 py-2 !text-sm !leading-tight !text-gray-700 !border rounded-md !shadow-sm !focus:outline-none focus:shadow-outline"
         />
@@ -31,11 +38,21 @@
           >Password</label
         >
       </p-floatlabel>
+      <div
+        *ngIf="
+          loginForm.controls.password.errors &&
+          loginForm.controls.password.touched
+        "
+        class="text-red-500"
+      >
+        Password is required.
+      </div>
     </div>
     <div class="mt-8">
       <p-button
         label="Submit"
         styleClass="w-full px-4 py-2 !text-white   rounded-md hover:bg-blue-600"
+        [loading]="loading"
         (click)="onLogin()"
       />
     </div>

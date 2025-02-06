@@ -1,0 +1,74 @@
+@if(course){
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-lg shadow-lg">
+  <div class="course-image">
+    <img
+      src="https://cdn.pixabay.com/photo/2015/09/17/16/40/book-944462_1280.jpg"
+      alt=""
+      class="w-full h-64 md:h-96 object-cover rounded-lg"
+    />
+  </div>
+  <div class="course-details p-4">
+    <h2 class="text-3xl font-bold mb-2">{{ course.title }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4">
+      <div class="description-label md:col-span-1">
+        <p class="font-bold">Description:</p>
+      </div>
+      <div class="description-text md:col-span-5">
+        <p>
+          {{ course.description }}
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4">
+      <div class="description-label md:col-span-1">
+        <p class="font-bold">Instructor:</p>
+      </div>
+      <div class="description-text md:col-span-5">
+        <p>
+          {{ course.instructor?.name }}
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4">
+      <div class="description-label md:col-span-1">
+        <p class="font-bold">Price:</p>
+      </div>
+      <div class="description-text md:col-span-5">
+        <p>
+          {{ course.price | currency : "INR" }}
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4">
+      <div class="description-label md:col-span-1">
+        <p class="font-bold">Duration:</p>
+      </div>
+      <div class="description-text md:col-span-5">
+        <p>
+          {{ course.duration }}
+        </p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4">
+      <div class="description-label md:col-span-1">
+        <p class="font-bold">Level:</p>
+      </div>
+      <div class="capitalize font-bold md:col-span-5">
+        <p
+          [ngClass]="{
+            'text-red-600': course.difficulty == 'hard',
+            'text-yellow-500': course.difficulty == 'medium',
+            'text-green-500': course.difficulty == 'easy'
+          }"
+        >
+          {{ course.difficulty }}
+        </p>
+      </div>
+    </div>
+    <div class="flex gap-4 mt-4">
+      <p-button label="Enroll" severity="primary"></p-button>
+      <p-button label="Share" severity="secondary"></p-button>
+    </div>
+  </div>
+</div>
+}

@@ -2,10 +2,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { ToggleSwitch } from 'primeng/toggleswitch';
+import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule, ToggleSwitch, FormsModule],
+  standalone: true,
+  imports: [RouterOutlet, ToastModule, ButtonModule, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -13,11 +16,4 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 export class AppComponent {
   title = 'demo';
   value: string = '';
-  theme = true;
-  toggle() {
-    const element = document.querySelector('html');
-    if (element) {
-      element.classList.toggle('my-app-dark');
-    }
-  }
 }
